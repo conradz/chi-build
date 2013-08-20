@@ -1,5 +1,9 @@
 # chi-build
 
+[![Build Status](https://travis-ci.org/conradz/chi-build.png?branch=master)](https://travis-ci.org/conradz/chi-build)
+[![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
+
+
 Custom build tool for the `chi-` packages.
 
 This tool is custom-made for packages such as
