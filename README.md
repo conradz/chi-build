@@ -21,7 +21,7 @@ tests will be run by browsers in [Sauce Labs](https://saucelabs.com/). The
 `SAUCE_USER` and `SAUCE_KEY` environment variables must be set to your Sauce
 username and key, respectively.
 
-## Local Tests
+### Local Tests
 
 Serve tests locally with the `chi-build serve` command. This will bundle and
 serve the tests in the same way as the automated tests. The output of the tests
