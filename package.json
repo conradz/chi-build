@@ -1,7 +1,7 @@
 {
   "name": "chi-build",
   "version": "0.0.2",
-  "description": "Build scripts for the chi projects",
+  "description": "Build scripts for the chi modules",
   "main": "index.js",
   "scripts": {
     "test": "node bin/chi-build test"

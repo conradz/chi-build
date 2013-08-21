@@ -5,9 +5,9 @@
 [![Build Status](https://travis-ci.org/conradz/chi-build.png?branch=master)](https://travis-ci.org/conradz/chi-build)
 [![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
 
-Custom build tool for the `chi-` packages.
+Custom build tool for the `chi` modules.
 
-This tool is custom-made for packages such as
+This tool is custom-made for modules such as
 [chi-create](https://github.com/conradz/chi-create). It is not intended to be a
 general-purpose build utility.
 
