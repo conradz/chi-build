@@ -3,12 +3,12 @@
 [![Build Status](https://travis-ci.org/conradz/chi-build.png?branch=master)](https://travis-ci.org/conradz/chi-build)
 [![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
 
-
 Custom build tool for the `chi-` packages.
 
 This tool is custom-made for packages such as
 [chi-create](https://github.com/conradz/chi-create). It is not intended to be a
 general-purpose build utility.
+
 
 ## Tests
 
@@ -32,3 +32,17 @@ serve the tests in the same way as the automated tests. The output of the tests
 will be displayed directly on the browser page. Use the `--port` option to
 determine the port that it will listen on (default 8000). Just refresh the page
 to re-bundle and re-run the tests.
+
+
+## API
+
+You can also use the JS API instead of using the `chi-build` tool.
+
+## `test()`
+
+Runs all the tests in the browsers. Same as `chi-build test`.
+
+## `serve(options)`
+
+Starts the test server locally. Same as `chi-build serve`. `options` may contain
+a `port` option to specify the port it will listen on.
