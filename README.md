@@ -1,5 +1,7 @@
 # chi-build
 
+[![NPM](https://nodei.co/npm/chi-build.png?compact=true)](https://nodei.co/npm/chi-build/)
+
 [![Build Status](https://travis-ci.org/conradz/chi-build.png?branch=master)](https://travis-ci.org/conradz/chi-build)
 [![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
 
