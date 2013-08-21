@@ -18,6 +18,7 @@
   "globals": {
     "require": false,
     "process": false,
-    "window": false
+    "window": false,
+    "module": false
   }
 }
