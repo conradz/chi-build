@@ -24,7 +24,8 @@
     "browserify": "~2.28.0",
     "sauce-tap-runner": "0.0.4",
     "async": "~0.2.9",
-    "serve-script": "0.0.3"
+    "serve-script": "0.0.3",
+    "build-jshint": "0.0.3"
   },
   "devDependencies": {
     "tape": "~1.0.4"

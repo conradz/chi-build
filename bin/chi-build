@@ -1,19 +1,50 @@
 #!/usr/bin/env node
 
+/*jshint node: true */
+
 var opts = require('nomnom'),
     build = require('../');
 
 opts.command('test')
-    .callback(build.test)
-    .help('Run the test script in Sauce Labs');
+    .callback(test)
+    .help('Lint and run the test script in Sauce Labs');
+
+opts.command('lint')
+    .callback(lint)
+    .help('Run JSHint');
 
 opts.command('serve')
-    .callback(build.serve)
+    .callback(serve)
     .help('Run server for the test scripts')
     .option('port', {
         abbr: 'p',
         default: 8000,
         help: 'The port for the HTTP server'
     });
+
+function error(err) {
+    if (err) {
+        console.error(err);
+        process.exit(1);
+    }
+}
+
+function test() {
+    build.lint(function(err) {
+        if (err) {
+            return error(err);
+        }
+
+        build.test(error);
+    });
+}
+
+function lint() {
+    build.lint(error);
+}
+
+function serve(options) {
+    build.serve(options, error);
+}
 
 opts.parse();

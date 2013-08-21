@@ -9,6 +9,11 @@ This tool is custom-made for packages such as
 [chi-create](https://github.com/conradz/chi-create). It is not intended to be a
 general-purpose build utility.
 
+## Linting
+
+Lint JS files with [JSHint](http://jshint.com/) by running `chi-build lint`.
+This lints the JS files with the options specified in the `jshint.json` file in
+this repositiory.
 
 ## Tests
 
@@ -18,7 +23,8 @@ will be automatically bundled by
 
 ### Automated Tests
 
-Run automated tests with the `chi-build test` command. This runs the tests with
+Run automated tests with the `chi-build test` command. Before automated tests
+are run, all JS files are linted. This runs the tests with
 [sauce-tap-runner](https://github.com/conradz/sauce-tap-runner). It will run the
 tests in browsers listed in the `browsers.json` file in this repository. The
 tests will be run by browsers in [Sauce Labs](https://saucelabs.com/). The
@@ -33,16 +39,22 @@ will be displayed directly on the browser page. Use the `--port` option to
 determine the port that it will listen on (default 8000). Just refresh the page
 to re-bundle and re-run the tests.
 
-
 ## API
 
 You can also use the JS API instead of using the `chi-build` tool.
 
-## `test()`
+### `test(callback)`
 
-Runs all the tests in the browsers. Same as `chi-build test`.
+Runs all the tests in the browsers. Note that this will *not* lint the files.
+Callback will return an error if tests failed in any of the browsers.
 
-## `serve(options)`
+### `lint(callback)`
+
+Lints the JS files. Callback will return an error if lint errors were found on
+any of the files.
+
+### `serve(options, callback)`
 
 Starts the test server locally. Same as `chi-build serve`. `options` may contain
-a `port` option to specify the port it will listen on.
+a `port` option to specify the port it will listen on. Callback will return an
+error if it could not start the server.

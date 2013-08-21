@@ -1,16 +1,27 @@
+/*jshint node: true */
+
 var browserify = require('browserify'),
     Runner = require('sauce-tap-runner'),
     serveScript = require('serve-script'),
     async = require('async'),
     http = require('http'),
-    browsers = require('./browsers');
+    browsers = require('./browsers'),
+    jshintOptions = require('./jshint'),
+    jshint = require('build-jshint');
 
 module.exports = {
     test: test,
+    lint: lint,
     serve: serve
 };
 
-function build(callback) {
+function defaultCallback(err) {
+    if (err) {
+        throw err;
+    }
+}
+
+function bundleScript(callback) {
     var bundle = browserify()
         .add('./test.js')
         .bundle();
@@ -18,7 +29,7 @@ function build(callback) {
     callback(null, bundle);
 }
 
-function printResults(browser, results) {
+function outputTestResults(browser, results) {
     if (!results.ok) {
         console.error(
             'Browser', browser.name,
@@ -28,7 +39,7 @@ function printResults(browser, results) {
     }
 
     results.fail.forEach(function(t) {
-        console.error('Test #' + t.number + ':', t.name, 'failed.')
+        console.error('Test #' + t.number + ':', t.name, 'failed.');
     });
 
     results.errors.forEach(function(e) {
@@ -36,13 +47,14 @@ function printResults(browser, results) {
     });
 }
 
-function test() {
+function test(callback) {
+    callback = callback || defaultCallback;
+
     var sauceUser = process.env.SAUCE_USER,
         sauceKey = process.env.SAUCE_KEY;
 
     if (!sauceUser || !sauceKey) {
-        console.error('SAUCE_USER and SAUCE_KEY must be set');
-        process.exit(1);
+        return callback(new Error('SAUCE_USER and SAUCE_USER must be set'));
     }
 
     var runner = new Runner(sauceUser, sauceKey),
@@ -51,12 +63,12 @@ function test() {
 
     function run(browser, callback) {
         console.log('Testing browser', browser.name + '...');
-        runner.run(build, browser, function(err, results) {
+        runner.run(bundleScript, browser, function(err, results) {
             if (err) {
                 return callback(err);
             }
 
-            printResults(browser, results);
+            outputTestResults(browser, results);
             if (!results.ok) {
                 failed++;
             }
@@ -67,28 +79,41 @@ function test() {
 
     function complete(err) {
         runner.close(function() {
-            if (err) {
-                console.error('Error occurred in tests');
-                console.error(err);
-                process.exit(1);
-            } else if (failed === 0) {
-                console.log('All browsers passed!');
-            } else {
-                console.error(failed, 'browser(s) failed');
+            if (!err && failed !== 0) {
+                err = new Error(failed + ' browser(s) failed');
             }
+
+            callback(err);
         });
     }
 }
 
-function serve(options) {
-    var app = serveScript({ src: build }),
+function lint(callback) {
+    callback = callback || defaultCallback;
+
+    var files = ['*.js', 'bin/*', 'lib/*', 'example/*'];
+    jshint(files, jshintOptions, function(err, failed) {
+        if (!err && failed) {
+            err = new Error('JSHint failed');
+        }
+
+        callback(err);
+    });
+}
+
+function serve(options, callback) {
+    options = options || {};
+    callback = callback || defaultCallback;
+
+    var app = serveScript({ src: bundleScript }),
         port = options.port || 8000;
 
     http.createServer(app).listen(port, function(err) {
         if (err) {
-            throw err;
+            return callback(err);
         }
 
         console.log('Listening on port', port);
+        callback();
     });
 }
