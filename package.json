@@ -1,6 +1,6 @@
 {
   "name": "chi-build",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Build scripts for the chi modules",
   "main": "index.js",
   "scripts": {
