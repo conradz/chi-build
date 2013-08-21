@@ -5,6 +5,8 @@
 var opts = require('nomnom'),
     build = require('../');
 
+opts.help('Valid commands: test, lint, serve');
+
 opts.command('test')
     .callback(test)
     .help('Lint and run the test script in Sauce Labs');
@@ -21,6 +23,8 @@ opts.command('serve')
         default: 8000,
         help: 'The port for the HTTP server'
     });
+
+opts.parse();
 
 function error(err) {
     if (err) {
@@ -46,5 +50,3 @@ function lint() {
 function serve(options) {
     build.serve(options, error);
 }
-
-opts.parse();
