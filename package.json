@@ -4,7 +4,8 @@
   "description": "Build scripts for the chi modules",
   "main": "index.js",
   "scripts": {
-    "test": "node bin/chi-build test"
+    "test": "node bin/chi-build test",
+    "lint": "node bin/chi-build lint"
   },
   "repository": {
     "type": "git",

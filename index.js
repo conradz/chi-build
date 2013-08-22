@@ -91,7 +91,7 @@ function test(callback) {
 function lint(callback) {
     callback = callback || defaultCallback;
 
-    var files = ['*.js', 'bin/*', 'lib/*', 'example/*'];
+    var files = ['*.js', 'bin/*', 'lib/*.js', 'example/*.js'];
     jshint(files, jshintOptions, function(err, failed) {
         if (!err && failed) {
             err = new Error('JSHint failed');
