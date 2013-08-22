@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/chi-build.png?compact=true)](https://nodei.co/npm/chi-build/)
 
-[![Build Status](https://travis-ci.org/conradz/chi-build.png?branch=master)](https://travis-ci.org/conradz/chi-build)
+[![Build Status](https://drone.io/github.com/conradz/chi-build/status.png)](https://drone.io/github.com/conradz/chi-build/latest)
 [![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
 
 Custom build tool for the `chi` modules.
