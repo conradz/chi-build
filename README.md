@@ -2,6 +2,7 @@
 
 [![NPM](https://nodei.co/npm/chi-build.png?compact=true)](https://nodei.co/npm/chi-build/)
 
+![Codeship Status](https://www.codeship.io/projects/0eed8b60-ee1e-0130-c9b2-5ec926fce10c/status)
 [![Build Status](https://drone.io/github.com/conradz/chi-build/status.png)](https://drone.io/github.com/conradz/chi-build/latest)
 [![Dependency Status](https://gemnasium.com/conradz/chi-build.png)](https://gemnasium.com/conradz/chi-build)
 
